@@ -1,9 +1,10 @@
 import "@mantine/core/styles.css";
+import "./globals.css";
 
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 
 export const metadata = {
-  title: "My Mantine app",
+  title: "Language Course",
   description: "I have followed setup instructions carefully",
 };
 

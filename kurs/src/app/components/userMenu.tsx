@@ -47,13 +47,15 @@ function Demo() {
       <Menu.Target>
         <UserButton
           image="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
-          name="Harriette Spoonlicker"
-          email="hspoonlicker@outlook.com"
+          name="Grzegorz Siemieniec"
+          email="grzegorz021104@gmail.com"
         />
       </Menu.Target>
-      <Menu.Dropdown>
-        <Menu.Item>Edit Profile</Menu.Item>
-        <Menu.Item style={{ color: "red" }}>Log Out</Menu.Item>
+      <Menu.Dropdown className=" bg-[#CBF1F5]">
+        <Menu.Item className=" hover:bg-white">Edit Profile</Menu.Item>
+        <Menu.Item className=" hover:bg-white" style={{ color: "red" }}>
+          Log Out
+        </Menu.Item>
       </Menu.Dropdown>
     </Menu>
   );
