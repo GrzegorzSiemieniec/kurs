@@ -70,7 +70,13 @@ function Demo() {
   const color = strength === 100 ? "teal" : strength > 50 ? "yellow" : "red";
 
   const form = useForm({
-    initialValues: { name: "", email: "", password: "", confirmPassword: "" },
+    initialValues: {
+      name: "",
+      surname: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
 
     // functions will be used to validate values at corresponding key
     validate: {
@@ -81,23 +87,56 @@ function Demo() {
     },
   });
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const name = e.target[0].value;
+    const surname = e.target[1].value;
+    const email = e.target[2].value;
+    const password = e.target[3].value;
+
+    console.log(email, password);
+    try {
+      const res = await fetch("/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          name: name,
+          surname: surname,
+        }),
+      });
+      if (res.status === 200) {
+        console.log("Udało sie");
+      }
+      if (res.status === 400) {
+        console.log("This email is alredy registereed");
+      }
+    } catch (error) {}
+  };
+
   return (
     <Box maw={340} mx="auto">
-      <form onSubmit={form.onSubmit(console.log)}>
+      <form onSubmit={handleSubmit}>
         <TextInput
           label="Name"
           placeholder="Name"
+          required
           {...form.getInputProps("name")}
         />
         <TextInput
           label="Surname"
           placeholder="Surname"
+          required
           {...form.getInputProps("surname")}
         />
         <TextInput
           mt="sm"
           label="Email"
           placeholder="Email"
+          required
           {...form.getInputProps("email")}
         />
         <Popover
@@ -115,6 +154,7 @@ function Demo() {
                 mt="sm"
                 label="Password"
                 placeholder="Password"
+                required
                 value={value}
                 onChange={(event) => {
                   setValue(event.currentTarget.value);
@@ -135,6 +175,7 @@ function Demo() {
         <PasswordInput
           mt="sm"
           label="Confirm Password"
+          required
           placeholder="Confirm Password"
           {...form.getInputProps("confirmPassword")}
         />

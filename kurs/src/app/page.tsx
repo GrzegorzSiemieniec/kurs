@@ -2,6 +2,7 @@ import Link from "next/link";
 import Icon from "./img/languageCourse.png";
 import Image from "next/image";
 import Form from "./components/registerForm.tsx";
+import db from "./db.ts";
 
 export default function Home() {
   return (
